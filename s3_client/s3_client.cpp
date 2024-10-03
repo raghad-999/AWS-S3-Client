@@ -27,7 +27,7 @@ S3Client::S3Client(const std::string& endpoint, const std::string& access_key, c
 S3Client::~S3Client()
 {
     // Shutdown AWS API
-    Aws::ShutdownAPI({});
+    // Aws::ShutdownAPI({});
 }
 
 void S3Client::list_buckets()
