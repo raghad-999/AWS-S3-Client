@@ -124,6 +124,36 @@ bool S3Client::delete_bucket()
     }
 }
 
+
+void S3Client::put_object()
+{
+    std::string bucket_name, object_name, file_name;
+    std::cout << "Enter bucket name: ";
+    std::cin >> bucket_name;
+    std::cout << "Enter object name (key): ";
+    std::cin >> object_name;
+
+    // Set up the PutObject request
+    Aws::S3::Model::PutObjectRequest object_request;
+    object_request.SetBucket(bucket_name);
+    object_request.SetKey(object_name);
+
+    auto content = Aws::MakeShared<Aws::StringStream>("PutObjectInputStream");
+    object_request.SetBody(content);
+
+    // Upload the object
+    auto put_object_outcome = s3_client.PutObject(object_request);
+
+    if (put_object_outcome.IsSuccess())
+    {
+        std::cout << "Successfully created object: " << object_name << std::endl;
+    }
+    else
+    {
+        std::cerr << "Error: " << put_object_outcome.GetError().GetMessage() << std::endl;
+    }
+}
+
 void S3Client::upload_file()
 {
     std::string bucket_name, object_name, file_name;

@@ -17,6 +17,7 @@ public:
     void list_objects();
     void download_file();
     void delete_object();
+    void put_object();
 
 private:
     Aws::S3::S3Client s3_client;

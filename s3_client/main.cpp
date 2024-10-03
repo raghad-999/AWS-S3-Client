@@ -32,6 +32,7 @@ int main()
         std::cout << "5. List objects in a bucket" << std::endl;
         std::cout << "6. Download object" << std::endl;
         std::cout << "7. Delete object" << std::endl;
+        std::cout << "8. Put object" << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
 
@@ -59,6 +60,9 @@ int main()
                 break;
             case 7:
                 s3_client.delete_object();
+                break;
+            case 8:
+                s3_client.put_object();
                 break;
             default:
                 std::cerr << "Invalid choice. Please try again." << std::endl;
